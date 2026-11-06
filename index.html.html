@@ -1,0 +1,1316 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SkillMatch — Найди своего ментора</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+:root {
+    --primary: #6254e8;
+    --dark: #17172f;
+    --light: #f7f8fc;
+    --muted: #777b91;
+    --white: #fff;
+    --radius: 20px;
+    --shadow: 0 10px 35px rgba(30,30,70,.07);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--light);
+    color: var(--dark);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+}
+
+.container {
+    width: min(1160px, 92%);
+    margin: auto;
+}
+
+/* HEADER */
+
+header {
+    background: rgba(255,255,255,.92);
+    backdrop-filter: blur(15px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid #eeeeF5;
+}
+
+.navbar {
+    height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+.logo span {
+    color: var(--dark);
+}
+
+.nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+    color: #555970;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.nav-links a:hover {
+    color: var(--primary);
+}
+
+.btn {
+    background: var(--primary);
+    color: white;
+    padding: 14px 23px;
+    border-radius: 12px;
+    font-weight: 700;
+    transition: .3s;
+    display: inline-block;
+}
+
+.btn:hover {
+    background: #493acb;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px #6254e844;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 23px;
+    background: transparent;
+    color: var(--dark);
+}
+
+/* HERO */
+
+.hero {
+    padding: 90px 0;
+    background: linear-gradient(120deg,#f7f8fc,#eeedff);
+    overflow: hidden;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    align-items: center;
+    gap: 55px;
+}
+
+.tag {
+    display: inline-block;
+    background: #e8e5ff;
+    color: var(--primary);
+    padding: 9px 15px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+.hero h1 {
+    font-size: clamp(38px,5vw,62px);
+    line-height: 1.13;
+    letter-spacing: -2px;
+    margin-bottom: 24px;
+}
+
+.hero h1 span {
+    color: var(--primary);
+}
+
+.hero p {
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 500px;
+    margin-bottom: 30px;
+}
+
+.hero-stats {
+    display: flex;
+    gap: 35px;
+    margin-top: 40px;
+}
+
+.stat strong {
+    display: block;
+    font-size: 23px;
+    margin-bottom: 5px;
+}
+
+.stat small {
+    color: var(--muted);
+}
+
+.hero-visual {
+    position: relative;
+    min-height: 390px;
+    display: grid;
+    place-items: center;
+}
+
+.hero-card {
+    background: white;
+    padding: 35px;
+    border-radius: 28px;
+    box-shadow: 0 25px 70px #6254e822;
+    width: 85%;
+    text-align: center;
+    position: relative;
+}
+
+.hero-card img {
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 6px solid #eeeaff;
+}
+
+.hero-card h3 {
+    margin: 18px 0 7px;
+}
+
+.hero-card p {
+    margin: 0 auto 18px;
+}
+
+.floating {
+    position: absolute;
+    background: white;
+    padding: 17px 20px;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.float-one {
+    top: 25px;
+    right: 0;
+}
+
+.float-two {
+    bottom: 25px;
+    left: 0;
+}
+
+/* GENERAL */
+
+section {
+    padding: 85px 0;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.section-heading h2 {
+    font-size: clamp(28px,4vw,38px);
+    margin-bottom: 13px;
+}
+
+.section-heading p {
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+/* STEPS */
+
+.steps {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 25px;
+}
+
+.step {
+    background: white;
+    padding: 32px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition: .3s;
+}
+
+.step:hover {
+    transform: translateY(-8px);
+}
+
+.step-icon {
+    width: 58px;
+    height: 58px;
+    background: #eeecff;
+    color: var(--primary);
+    border-radius: 17px;
+    display: grid;
+    place-items: center;
+    font-size: 23px;
+    margin-bottom: 23px;
+}
+
+.step h3 {
+    margin-bottom: 12px;
+}
+
+.step p {
+    color: var(--muted);
+    line-height: 1.7;
+    font-size: 14px;
+}
+
+/* MENTORS */
+
+.mentors-section {
+    background: #f0efff;
+}
+
+.filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.filter-btn {
+    padding: 11px 19px;
+    border-radius: 30px;
+    background: white;
+    color: #555970;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.sort-select {
+    display: block;
+    margin: 0 auto 35px;
+    padding: 12px 18px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: white;
+    font: inherit;
+}
+
+.mentor-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 25px;
+}
+
+.mentor-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 25px;
+    box-shadow: var(--shadow);
+    transition: .3s;
+}
+
+.mentor-card:hover {
+    transform: translateY(-7px);
+}
+
+.mentor-top {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 22px;
+}
+
+.mentor-top img {
+    width: 75px;
+    height: 75px;
+    border-radius: 18px;
+    object-fit: cover;
+}
+
+.mentor-top h3 {
+    font-size: 17px;
+    margin-bottom: 6px;
+}
+
+.specialty {
+    font-size: 12px;
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.rating {
+    color: #f4aa24;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.mentor-desc {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+    min-height: 42px;
+    margin-bottom: 18px;
+}
+
+.mentor-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    border-top: 1px solid #eee;
+    padding-top: 18px;
+}
+
+.price {
+    font-weight: 800;
+    font-size: 18px;
+}
+
+.price small {
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 400;
+}
+
+.book-btn {
+    background: #eeecff;
+    color: var(--primary);
+    padding: 11px 15px;
+    border-radius: 10px;
+    font-weight: 700;
+    transition: .3s;
+}
+
+.book-btn:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.no-results {
+    text-align: center;
+    color: var(--muted);
+    grid-column: 1/-1;
+    padding: 30px;
+}
+
+/* REVIEWS */
+
+.reviews {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 25px;
+}
+
+.review {
+    background: white;
+    border-radius: var(--radius);
+    padding: 28px;
+    box-shadow: var(--shadow);
+}
+
+.review .stars {
+    color: #f4aa24;
+    margin-bottom: 18px;
+}
+
+.review p {
+    color: #666a80;
+    line-height: 1.8;
+    font-size: 14px;
+    margin-bottom: 22px;
+}
+
+.reviewer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.reviewer img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.reviewer strong {
+    font-size: 14px;
+}
+
+/* CTA */
+
+.cta {
+    padding: 65px 30px;
+    text-align: center;
+    border-radius: 28px;
+    color: white;
+    background: linear-gradient(120deg,#6254e8,#4034a8);
+}
+
+.cta h2 {
+    font-size: clamp(27px,4vw,40px);
+    margin-bottom: 15px;
+}
+
+.cta p {
+    opacity: .85;
+    margin-bottom: 28px;
+    line-height: 1.7;
+}
+
+.cta .btn {
+    background: white;
+    color: var(--primary);
+}
+
+/* FOOTER */
+
+footer {
+    margin-top: 85px;
+    background: #17172f;
+    color: white;
+    padding: 55px 0 25px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 45px;
+    margin-bottom: 40px;
+}
+
+footer p {
+    color: #a5a6bb;
+    font-size: 14px;
+    line-height: 1.8;
+    margin-top: 17px;
+}
+
+footer h4 {
+    margin-bottom: 18px;
+}
+
+.footer-links {
+    display: grid;
+    gap: 13px;
+    color: #a5a6bb;
+    font-size: 14px;
+}
+
+.footer-links a:hover {
+    color: white;
+}
+
+.socials {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.socials a {
+    background: #292947;
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    border-radius: 10px;
+}
+
+.copyright {
+    border-top: 1px solid #30304b;
+    text-align: center;
+    padding-top: 25px;
+    color: #8889a2;
+    font-size: 13px;
+}
+
+/* MODAL */
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: #101025aa;
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    width: 100%;
+    max-width: 450px;
+    padding: 35px;
+    border-radius: 22px;
+    position: relative;
+    animation: show .3s ease;
+}
+
+@keyframes show {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 18px;
+    background: none;
+    font-size: 23px;
+    color: #777;
+}
+
+.modal-content h2 {
+    margin-bottom: 10px;
+}
+
+.modal-content > p {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--primary);
+}
+
+.modal-content form .btn {
+    width: 100%;
+    font-size: 15px;
+}
+
+.success {
+    display: none;
+    text-align: center;
+    padding: 25px 0;
+}
+
+.success i {
+    font-size: 55px;
+    color: #26b77a;
+    margin-bottom: 20px;
+}
+
+.success p {
+    color: var(--muted);
+    margin-top: 12px;
+    line-height: 1.6;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:850px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-visual {
+        min-height: 350px;
+    }
+
+    .mentor-grid,
+    .reviews {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .nav-links {
+        gap: 15px;
+    }
+}
+
+@media(max-width:650px) {
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 76px;
+        left: 0;
+        width: 100%;
+        padding: 25px;
+        background: white;
+        flex-direction: column;
+        box-shadow: var(--shadow);
+    }
+
+    .nav-links.show {
+        display: flex;
+    }
+
+    .nav-action {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .hero {
+        padding: 65px 0;
+    }
+
+    .hero-stats {
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .steps,
+    .mentor-grid,
+    .reviews,
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    section {
+        padding: 65px 0;
+    }
+
+    .hero-card {
+        width: 90%;
+    }
+
+    .floating {
+        font-size: 11px;
+        padding: 12px;
+    }
+
+    .modal-content {
+        padding: 28px 22px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="container navbar">
+        <a href="#home" class="logo">
+            <i class="fa-solid fa-bolt"></i> Skill<span>Match</span>
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Главная</a></li>
+            <li><a href="#how">Как это работает</a></li>
+            <li><a href="#mentors">Менторы</a></li>
+            <li><a href="#reviews">Отзывы</a></li>
+        </ul>
+
+        <button class="btn nav-action" onclick="openModal()">
+            Найти ментора
+        </button>
+
+        <button class="menu-toggle" id="menuToggle">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </div>
+</header>
+
+<main>
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+    <div class="container hero-grid">
+
+        <div>
+            <span class="tag">
+                <i class="fa-solid fa-sparkles"></i>
+                Твой путь к новым знаниям
+            </span>
+
+            <h1>
+                Найди своего <span>ментора.</span><br>
+                Измени своё будущее.
+            </h1>
+
+            <p>
+                Подбери опытного наставника по программированию,
+                английскому языку или дизайну. Начни развиваться уже сегодня!
+            </p>
+
+            <button class="btn" onclick="document.getElementById('mentors').scrollIntoView({behavior:'smooth'})">
+                Найти своего ментора <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
+            <div class="hero-stats">
+                <div class="stat">
+                    <strong>100+</strong>
+                    <small>Экспертов</small>
+                </div>
+                <div class="stat">
+                    <strong>4.9/5</strong>
+                    <small>Средний рейтинг</small>
+                </div>
+                <div class="stat">
+                    <strong>5 000+</strong>
+                    <small>Учеников</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            <div class="hero-card">
+                <img src="https://i.pravatar.cc/200?img=12" alt="Ментор">
+                <h3>Александр Иванов</h3>
+                <p>Senior Full-stack Developer</p>
+                <div class="rating">★★★★★ 4.9 (120 отзывов)</div>
+                <span class="tag">Твой будущий наставник</span>
+            </div>
+
+            <div class="floating float-one">
+                <i class="fa-solid fa-star" style="color:#f4aa24"></i>
+                4.9 рейтинг
+            </div>
+
+            <div class="floating float-two">
+                <i class="fa-solid fa-users" style="color:#6254e8"></i>
+                5 000+ учеников
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- HOW IT WORKS -->
+
+<section id="how">
+    <div class="container">
+
+        <div class="section-heading">
+            <h2>Как это работает?</h2>
+            <p>Всего три простых шага отделяют тебя от новых знаний.</p>
+        </div>
+
+        <div class="steps">
+
+            <div class="step">
+                <div class="step-icon">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <h3>01. Выбери ментора</h3>
+                <p>Найди специалиста по своему направлению, уровню и бюджету.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-icon">
+                    <i class="fa-solid fa-calendar-check"></i>
+                </div>
+                <h3>02. Запишись на урок</h3>
+                <p>Выбери наставника и отправь заявку на пробное занятие.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-icon">
+                    <i class="fa-solid fa-rocket"></i>
+                </div>
+                <h3>03. Начни развиваться</h3>
+                <p>Учись у профессионалов и двигайся к своим целям быстрее.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- MENTORS -->
+
+<section class="mentors-section" id="mentors">
+    <div class="container">
+
+        <div class="section-heading">
+            <h2>Популярные менторы</h2>
+            <p>Выбирай лучших специалистов для своего развития.</p>
+        </div>
+
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">Все</button>
+            <button class="filter-btn" data-filter="programming">Программирование</button>
+            <button class="filter-btn" data-filter="english">Английский</button>
+            <button class="filter-btn" data-filter="design">Дизайн</button>
+        </div>
+
+        <select class="sort-select" id="sortPrice">
+            <option value="default">Сортировка: по умолчанию</option>
+            <option value="low">Сначала дешевле</option>
+            <option value="high">Сначала дороже</option>
+        </select>
+
+        <div class="mentor-grid" id="mentorGrid">
+
+            <article class="mentor-card" data-category="programming" data-price="150000">
+                <div class="mentor-top">
+                    <img src="https://i.pravatar.cc/150?img=12" alt="Александр">
+                    <div>
+                        <h3>Александр</h3>
+                        <span class="specialty">Full-stack Developer</span>
+                    </div>
+                </div>
+                <div class="rating">★★★★★ 4.9</div>
+                <p class="mentor-desc">Помогаю освоить HTML, CSS, JavaScript и React с нуля.</p>
+                <div class="mentor-bottom">
+                    <div class="price">150 000 <small>сум / час</small></div>
+                    <button class="book-btn" data-mentor="Александр">Записаться</button>
+                </div>
+            </article>
+
+            <article class="mentor-card" data-category="english" data-price="100000">
+                <div class="mentor-top">
+                    <img src="https://i.pravatar.cc/150?img=47" alt="София">
+                    <div>
+                        <h3>София</h3>
+                        <span class="specialty">English Teacher</span>
+                    </div>
+                </div>
+                <div class="rating">★★★★★ 5.0</div>
+                <p class="mentor-desc">Разговорный английский, грамматика и подготовка к IELTS.</p>
+                <div class="mentor-bottom">
+                    <div class="price">100 000 <small>сум / час</small></div>
+                    <button class="book-btn" data-mentor="София">Записаться</button>
+                </div>
+            </article>
+
+            <article class="mentor-card" data-category="design" data-price="180000">
+                <div class="mentor-top">
+                    <img src="https://i.pravatar.cc/150?img=11" alt="Дмитрий">
+                    <div>
+                        <h3>Дмитрий</h3>
+                        <span class="specialty">UI/UX Designer</span>
+                    </div>
+                </div>
+                <div class="rating">★★★★★ 4.8</div>
+                <p class="mentor-desc">Научу создавать современные интерфейсы в Figma.</p>
+                <div class="mentor-bottom">
+                    <div class="price">180 000 <small>сум / час</small></div>
+                    <button class="book-btn" data-mentor="Дмитрий">Записаться</button>
+                </div>
+            </article>
+
+            <article class="mentor-card" data-category="programming" data-price="130000">
+                <div class="mentor-top">
+                    <img src="https://i.pravatar.cc/150?img=33" alt="Марк">
+                    <div>
+                        <h3>Марк</h3>
+                        <span class="specialty">Python Developer</span>
+                    </div>
+                </div>
+                <div class="rating">★★★★★ 4.9</div>
+                <p class="mentor-desc">Python, алгоритмы и создание первых проектов.</p>
+                <div class="mentor-bottom">
+                    <div class="price">130 000 <small>сум / час</small></div>
+                    <button class="book-btn" data-mentor="Марк">Записаться</button>
+                </div>
+            </article>
+
+            <article class="mentor-card" data-category="english" data-price="120000">
+                <div class="mentor-top">
+                    <img src="https://i.pravatar.cc/150?img=44" alt="Анна">
+                    <div>
+                        <h3>Анна</h3>
+                        <span class="specialty">IELTS Specialist</span>
+                    </div>
+                </div>
+                <div class="rating">★★★★★ 4.9</div>
+                <p class="mentor-desc">Индивидуальная подготовка к IELTS и разговорная практика.</p>
+                <div class="mentor-bottom">
+                    <div class="price">120 000 <small>сум / час</small></div>
+                    <button class="book-btn" data-mentor="Анна">Записаться</button>
+                </div>
+            </article>
+
+            <article class="mentor-card" data-category="design" data-price="160000">
+                <div class="mentor-top">
+                    <img src="https://i.pravatar.cc/150?img=59" alt="Елена">
+                    <div>
+                        <h3>Елена</h3>
+                        <span class="specialty">Graphic Designer</span>
+                    </div>
+                </div>
+                <div class="rating">★★★★★ 5.0</div>
+                <p class="mentor-desc">Графический дизайн, Photoshop и визуальная коммуникация.</p>
+                <div class="mentor-bottom">
+                    <div class="price">160 000 <small>сум / час</small></div>
+                    <button class="book-btn" data-mentor="Елена">Записаться</button>
+                </div>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<!-- REVIEWS -->
+
+<section id="reviews">
+    <div class="container">
+
+        <div class="section-heading">
+            <h2>Отзывы наших учеников</h2>
+            <p>Реальные истории успеха начинаются с правильного наставника.</p>
+        </div>
+
+        <div class="reviews">
+
+            <div class="review">
+                <div class="stars">★★★★★</div>
+                <p>«Благодаря SkillMatch я нашёл отличного ментора по JavaScript. За два месяца создал свой первый сайт!»</p>
+                <div class="reviewer">
+                    <img src="https://i.pravatar.cc/100?img=13" alt="Ученик">
+                    <strong>Тимур</strong>
+                </div>
+            </div>
+
+            <div class="review">
+                <div class="stars">★★★★★</div>
+                <p>«Очень удобно! Не пришлось искать преподавателя по всему интернету. Нашла хорошего преподавателя английского».</p>
+                <div class="reviewer">
+                    <img src="https://i.pravatar.cc/100?img=48" alt="Ученица">
+                    <strong>Мадина</strong>
+                </div>
+            </div>
+
+            <div class="review">
+                <div class="stars">★★★★★</div>
+                <p>«Понравился простой интерфейс и возможность выбрать ментора по своему бюджету. Рекомендую!»</p>
+                <div class="reviewer">
+                    <img src="https://i.pravatar.cc/100?img=14" alt="Ученик">
+                    <strong>Азиз</strong>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+
+<section>
+    <div class="container">
+        <div class="cta">
+            <h2>Готов сделать первый шаг?</h2>
+            <p>Оставь заявку и начни свой путь к новым знаниям!</p>
+            <button class="btn" onclick="openModal()">
+                Записаться бесплатно <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+
+<footer>
+    <div class="container">
+
+        <div class="footer-grid">
+            <div>
+                <a href="#home" class="logo" style="color:white">
+                    <i class="fa-solid fa-bolt"></i> SkillMatch
+                </a>
+                <p>Помогаем находить лучших наставников и открывать новые возможности каждый день.</p>
+
+                <div class="socials">
+                    <a href="https://instagram.com/" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://t.me/" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+                    <a href="https://youtube.com/" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div>
+                <h4>Навигация</h4>
+                <div class="footer-links">
+                    <a href="#home">Главная</a>
+                    <a href="#how">Как это работает</a>
+                    <a href="#mentors">Менторы</a>
+                    <a href="#reviews">Отзывы</a>
+                </div>
+            </div>
+
+            <div>
+                <h4>Направления</h4>
+                <div class="footer-links">
+                    <a href="#mentors">Программирование</a>
+                    <a href="#mentors">Английский язык</a>
+                    <a href="#mentors">Дизайн</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="copyright">
+            © 2026 SkillMatch. Все права защищены.
+        </div>
+
+    </div>
+</footer>
+
+<!-- BOOKING MODAL -->
+
+<div class="modal" id="bookingModal">
+    <div class="modal-content">
+
+        <button class="close" id="closeModal" aria-label="Закрыть">
+            &times;
+        </button>
+
+        <div id="formContent">
+            <h2>Запись на урок 🚀</h2>
+            <p>Заполни форму, и мы свяжемся с тобой.</p>
+
+            <form id="bookingForm">
+
+                <div class="form-group">
+                    <label for="name">Твоё имя</label>
+                    <input type="text" id="name" placeholder="Например, Тимур" minlength="2" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Телефон</label>
+                    <input type="tel" id="phone" placeholder="+998 90 123 45 67" pattern="[+]?[0-9 ()-]{9,20}" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="mentor">Выбери ментора</label>
+                    <select id="mentor" required>
+                        <option value="">Выбрать ментора</option>
+                        <option>Александр</option>
+                        <option>София</option>
+                        <option>Дмитрий</option>
+                        <option>Марк</option>
+                        <option>Анна</option>
+                        <option>Елена</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="goal">Твоя цель</label>
+                    <select id="goal" required>
+                        <option value="">Выбери цель</option>
+                        <option>Начать изучать с нуля</option>
+                        <option>Улучшить свои навыки</option>
+                        <option>Подготовиться к экзамену</option>
+                        <option>Создать собственный проект</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn">
+                    Отправить заявку <i class="fa-solid fa-paper-plane"></i>
+                </button>
+
+            </form>
+        </div>
+
+        <div class="success" id="successMessage">
+            <i class="fa-solid fa-circle-check"></i>
+            <h2>Заявка принята!</h2>
+            <p>Спасибо! Твоя заявка успешно оформлена. Скоро мы с тобой свяжемся.</p>
+            <button class="btn" id="successClose" style="margin-top:25px">Отлично!</button>
+        </div>
+
+    </div>
+</div>
+
+<script>
+
+// MOBILE MENU
+
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+
+menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('show');
+});
+
+navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+        navLinks.classList.remove('show');
+    });
+});
+
+// FILTERS
+
+const filterButtons = document.querySelectorAll('.filter-btn');
+const mentorGrid = document.getElementById('mentorGrid');
+const sortSelect = document.getElementById('sortPrice');
+
+let currentFilter = 'all';
+
+function updateMentors() {
+    const cards = [...document.querySelectorAll('.mentor-card')];
+
+    let visibleCards = cards.filter(card => {
+        return currentFilter === 'all' ||
+               card.dataset.category === currentFilter;
+    });
+
+    if (sortSelect.value === 'low') {
+        visibleCards.sort((a,b) => +a.dataset.price - +b.dataset.price);
+    }
+
+    if (sortSelect.value === 'high') {
+        visibleCards.sort((a,b) => +b.dataset.price - +a.dataset.price);
+    }
+
+    cards.forEach(card => card.style.display = 'none');
+
+    visibleCards.forEach(card => {
+        card.style.display = 'block';
+        mentorGrid.appendChild(card);
+    });
+
+    let oldMessage = document.querySelector('.no-results');
+
+    if (oldMessage) oldMessage.remove();
+
+    if (visibleCards.length === 0) {
+        mentorGrid.insertAdjacentHTML(
+            'beforeend',
+            '<p class="no-results">Менторы не найдены.</p>'
+        );
+    }
+}
+
+filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+
+        button.classList.add('active');
+        currentFilter = button.dataset.filter;
+
+        updateMentors();
+    });
+});
+
+sortSelect.addEventListener('change', updateMentors);
+
+// MODAL
+
+const modal = document.getElementById('bookingModal');
+const bookingForm = document.getElementById('bookingForm');
+const mentorSelect = document.getElementById('mentor');
+
+function openModal(mentorName = '') {
+    modal.classList.add('active');
+
+    if (mentorName) {
+        mentorSelect.value = mentorName;
+    }
+}
+
+function closeModal() {
+    modal.classList.remove('active');
+}
+
+document.getElementById('closeModal').addEventListener('click', closeModal);
+document.getElementById('successClose').addEventListener('click', closeModal);
+
+modal.addEventListener('click', (event) => {
+    if (event.target === modal) closeModal();
+});
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeModal();
+});
+
+// BOOKING BUTTONS
+
+document.querySelectorAll('.book-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        openModal(button.dataset.mentor);
+    });
+});
+
+// FORM SUBMISSION
+
+bookingForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    if (!bookingForm.checkValidity()) {
+        bookingForm.reportValidity();
+        return;
+    }
+
+    document.getElementById('formContent').style.display = 'none';
+    document.getElementById('successMessage').style.display = 'block';
+
+    bookingForm.reset();
+});
+
+// RESET MODAL
+
+document.getElementById('successClose').addEventListener('click', () => {
+    document.getElementById('formContent').style.display = 'block';
+    document.getElementById('successMessage').style.display = 'none';
+});
+
+document.getElementById('closeModal').addEventListener('click', () => {
+    document.getElementById('formContent').style.display = 'block';
+    document.getElementById('successMessage').style.display = 'none';
+});
+
+</script>
+
+</body>
+</html>
